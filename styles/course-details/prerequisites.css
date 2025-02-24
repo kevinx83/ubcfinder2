@@ -1,0 +1,81 @@
+/* Prerequisites Box Specific Styles */
+.prerequisites-box .section {
+    margin-bottom: 12px;
+}
+
+.prerequisites-box h4 {
+    color: #8b949e;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 0 0px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.prerequisites-box p {
+    color: #e9e9e9;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Course Link Styles */
+.course-link {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.course-link:hover {
+    color: #4361ee;
+}
+
+/* Space after course link but before comma */
+.course-link+.comma {
+    margin-right: 0.4em;
+}
+
+.section-content {
+    max-height: 48px;
+    /* About 2 lines of text */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.section-content.expanded {
+    max-height: 1000px;
+    /* Large enough to show all content */
+}
+
+
+
+@media (max-width: 1200px) {
+    .section-content {
+        max-height: 24px;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+}
+
+.show-more-btn {
+    width: auto;
+    display: block;
+    padding: 8px 16px;
+    margin: 12px auto 0;
+    background: #1a1f2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e9e9e9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+.show-more-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
