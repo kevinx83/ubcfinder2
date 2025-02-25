@@ -97,11 +97,11 @@
             <div class="control-panel">
                 <input type="text" id="searchInput" class="search-input" placeholder="Search by course or subject">
                 <select id="sortBy" class="filter-select">
+                    <option value="students">Sort by Students ↓</option>
+                    <option value="students-asc">Sort by Students ↑</option>
                     <option value="code">Sort by Code</option>
                     <option value="average">Sort by Average ↓</option>
                     <option value="average-asc">Sort by Average ↑</option>
-                    <option value="students">Sort by Students ↓</option>
-                    <option value="students-asc">Sort by Students ↑</option>
                 </select>
             </div>
 
@@ -126,7 +126,7 @@
                 <table id="courseTable">
                     <thead>
                         <tr>
-                            <th>Course Code</th>
+                            <th>Code</th>
                             <th>Course Name</th>
                             <th>Students</th>
                             <th>Average</th>
