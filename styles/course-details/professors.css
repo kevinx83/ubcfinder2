@@ -140,7 +140,7 @@
 
     /* Reduce font sizes */
     .professors-box th {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         letter-spacing: 0;
     }
 
@@ -161,17 +161,6 @@
     }
 }
 
-/* Extra small devices */
-@media (max-width: 480px) {
-    .professors-box th {
-        font-size: 0.65rem;
-    }
-
-    .professors-box td {
-        font-size: 0.75rem;
-    }
-}
-
 /* Sort container styles */
 .sort-container {
     display: flex;
@@ -182,7 +171,7 @@
   /* Make the sort dropdown more compact */
   .professors-box .sort-container .filter-select {
     width: auto;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     padding: 8px 12px;
   }
   

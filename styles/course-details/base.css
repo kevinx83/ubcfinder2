@@ -13,7 +13,7 @@
 }
 
 .course-header h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #fff;
     margin: 0;
     font-weight: 500;
@@ -56,13 +56,13 @@
 
 /* Grid Layout */
 .course-details-container {
-    max-width: 95%;
+    max-width: 97%;
     margin: 0 auto;
 }
 
 .course-details-grid {
     display: grid;
-    grid-template-columns: 27% 49% 19%; /* add up to 95 */
+    grid-template-columns: 27% 49% 21%; /* add up to 95 */
     gap: 24px;
     align-items: start;
 }
