@@ -5,26 +5,26 @@ export class PrerequisitesManager {
       this.dependenciesElement = document.getElementById('dependencies');
   }
 
-  makeCollapsible(element, content) {
+  makeCollapsible(element, content, isCollapsible = true) {
         if (!element) return;
 
-        // Create wrapper and button
+        // Create wrapper
         const wrapper = document.createElement('div');
         wrapper.className = 'section-content';
         wrapper.innerHTML = content;
-
-        const button = document.createElement('button');
-        button.className = 'show-more-btn';
-        button.textContent = 'Show More';
-        button.type = 'button'; // Explicitly set button type
-
+        
         // Replace original content
         element.innerHTML = '';
         element.appendChild(wrapper);
 
-        // Check if content needs truncation
-        if (wrapper.scrollHeight > 48) {
+        // Only add 'Show More' button for dependencies or when explicitly requested
+        if (isCollapsible && wrapper.scrollHeight > 48) {
             wrapper.classList.add('truncated');
+            
+            const button = document.createElement('button');
+            button.className = 'show-more-btn';
+            button.textContent = 'Show More';
+            button.type = 'button'; // Explicitly set button type
             element.appendChild(button);
 
             // Add click handler
@@ -38,23 +38,23 @@ export class PrerequisitesManager {
   update(prereqData) {
       if (!prereqData) {
           const unavailableMessage = '<p>Data unavailable</p>';
-          this.makeCollapsible(this.prerequisitesElement, unavailableMessage);
-          this.makeCollapsible(this.corequisitesElement, unavailableMessage);
-          this.makeCollapsible(this.dependenciesElement, unavailableMessage);
+          this.makeCollapsible(this.prerequisitesElement, unavailableMessage, false);  // Don't make collapsible
+          this.makeCollapsible(this.corequisitesElement, unavailableMessage, false);   // Don't make collapsible
+          this.makeCollapsible(this.dependenciesElement, unavailableMessage, true);    // Make collapsible
           return;
       }
 
-      // Update prerequisites
+      // Update prerequisites - NOT collapsible
       const prerequisites = this.getPrerequisites(prereqData);
-      this.makeCollapsible(this.prerequisitesElement, `<p>${prerequisites}</p>`);
+      this.makeCollapsible(this.prerequisitesElement, `<p>${prerequisites}</p>`, false);
 
-      // Update corequisites
+      // Update corequisites - NOT collapsible
       const corequisites = this.getCorequisites(prereqData);
-      this.makeCollapsible(this.corequisitesElement, `<p>${corequisites}</p>`);
+      this.makeCollapsible(this.corequisitesElement, `<p>${corequisites}</p>`, false);
 
-      // Update dependencies
+      // Update dependencies - IS collapsible
       const dependencies = this.createCourseLinks(prereqData.depn) || 'None';
-      this.makeCollapsible(this.dependenciesElement, `<p>${dependencies}</p>`);
+      this.makeCollapsible(this.dependenciesElement, `<p>${dependencies}</p>`, true);
   }
   
     getPrerequisites(prereqData) {

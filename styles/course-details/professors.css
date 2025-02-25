@@ -171,3 +171,41 @@
         font-size: 0.75rem;
     }
 }
+
+/* Sort container styles */
+.sort-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Make the sort dropdown more compact */
+  .professors-box .sort-container .filter-select {
+    width: auto;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+  
+  /* Add some space before the table */
+  .professors-box .table-container {
+    margin-top: 8px;
+  }
+  
+  /* Animation for sort changes */
+  .professors-box tbody tr {
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Responsive styles for mobile */
+  @media (max-width: 768px) {
+    .sort-container {
+      justify-content: center;
+    }
+    
+    .professors-box .sort-container .filter-select {
+      width: 100%;
+      max-width: 300px;
+      font-size: 0.8rem;
+      padding: 6px 10px;
+    }
+  }

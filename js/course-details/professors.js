@@ -2,6 +2,7 @@ export class ProfessorsManager {
     constructor() {
         this.professorsContent = document.getElementById('professorsContent');
         this.instructorData = null;
+        this.sortOption = 'average-desc'; // Default sort option
     }
 
     async update(professors, courseCode) {
@@ -22,7 +23,7 @@ export class ProfessorsManager {
             this.instructorData = instructorData;
 
             // Find all professors who teach this course
-            const courseProfessors = [];
+            let courseProfessors = [];
             for (const instructor of instructorData) {
                 // Look for this course in the instructor's courses
                 const courseEntry = instructor.courses.find(course => course.code === courseCode);
@@ -34,8 +35,18 @@ export class ProfessorsManager {
                 }
             }
 
-            // Create table structure directly without wrapper or show more button
+            // Sort the professors based on current sort option
+            this.sortProfessors(courseProfessors);
+
+            // Create table structure with sort dropdown
             const tableHtml = `
+                <div class="sort-container">
+                    <select id="professorSort" class="filter-select">
+                        <option value="average-desc" ${this.sortOption === 'average-desc' ? 'selected' : ''}>Average ↓</option>
+                        <option value="average-asc" ${this.sortOption === 'average-asc' ? 'selected' : ''}>Average ↑</option>
+                        <option value="name-asc" ${this.sortOption === 'name-asc' ? 'selected' : ''}>Name</option>
+                    </select>
+                </div>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -86,10 +97,37 @@ export class ProfessorsManager {
                 });
             });
 
+            // Add event listener for sort dropdown
+            const sortSelect = document.getElementById('professorSort');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (e) => {
+                    this.sortOption = e.target.value;
+                    this.update(professors, courseCode);
+                });
+            }
+
         } catch (error) {
             console.error('Error loading instructor data:', error);
             this.professorsContent.innerHTML = '<p>Error loading professor information</p>';
         }
+    }
+
+    sortProfessors(professors) {
+        switch (this.sortOption) {
+            case 'average-desc':
+                professors.sort((a, b) => b.courseData.average - a.courseData.average);
+                break;
+            case 'average-asc':
+                professors.sort((a, b) => a.courseData.average - b.courseData.average);
+                break;
+            case 'name-asc':
+                professors.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'name-desc':
+                professors.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+        }
+        return professors;
     }
 
     showProfessorGrades(profName, courseCode) {
