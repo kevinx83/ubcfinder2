@@ -121,77 +121,80 @@ class InsightsManager {
         const validCourses = courses.filter(c => c.Average > 0 && c.Reported > 0);
         
         const stats = {
-            highestAvg: {
-                course: '',
-                value: 0
-            },
-            lowestAvg: {
-                course: '',
-                value: 100
-            },
-            mostEnrolled: {
-                course: '',
-                value: 0
-            },
-            overallAvg: 0,
-            totalCourses: validCourses.length,
-            totalStudents: 0,
-            facultyStats: {}
+          highestAvg: {
+            course: '',
+            value: 0
+          },
+          lowestAvg: {
+            course: '',
+            value: 100
+          },
+          mostEnrolled: {
+            course: '',
+            value: 0
+          },
+          overallAvg: 0,
+          totalCourses: validCourses.length,
+          totalStudents: 0,
+          facultyStats: {}
         };
-
+    
         let totalWeightedAvg = 0;
         validCourses.forEach(course => {
-            // Update highest/lowest averages
-            if (course.Average > stats.highestAvg.value) {
-                stats.highestAvg = {
-                    course: `${course.Code} - ${course.Name}`,
-                    value: course.Average
-                };
-            }
-            if (course.Average < stats.lowestAvg.value) {
-                stats.lowestAvg = {
-                    course: `${course.Code} - ${course.Name}`,
-                    value: course.Average
-                };
-            }
-
-            // Update most enrolled
-            if (course.Reported > stats.mostEnrolled.value) {
-                stats.mostEnrolled = {
-                    course: `${course.Code} - ${course.Name}`,
-                    value: course.Reported
-                };
-            }
-
-            // Update totals
-            totalWeightedAvg += course.Average * course.Reported;
-            stats.totalStudents += course.Reported;
-
-            // Update faculty stats
-            if (!stats.facultyStats[course.Faculty]) {
-                stats.facultyStats[course.Faculty] = {
-                    totalCourses: 0,
-                    totalStudents: 0,
-                    averageGrade: 0,
-                    weightedTotal: 0
-                };
-            }
-            stats.facultyStats[course.Faculty].totalCourses++;
-            stats.facultyStats[course.Faculty].totalStudents += course.Reported;
-            stats.facultyStats[course.Faculty].weightedTotal += course.Average * course.Reported;
+          // Update highest/lowest averages
+          if (course.Average > stats.highestAvg.value) {
+            stats.highestAvg = {
+              course: `${course.Code} - ${course.Name}`,
+              value: course.Average
+            };
+          }
+          if (course.Average < stats.lowestAvg.value) {
+            stats.lowestAvg = {
+              course: `${course.Code} - ${course.Name}`,
+              value: course.Average
+            };
+          }
+    
+          // Update most enrolled
+          if (course.Reported > stats.mostEnrolled.value) {
+            stats.mostEnrolled = {
+              course: `${course.Code} - ${course.Name}`,
+              value: course.Reported
+            };
+          }
+    
+          // Update totals
+          totalWeightedAvg += course.Average * course.Reported;
+          stats.totalStudents += course.Reported;
+    
+          // Get base faculty name without honorary science suffix
+          const baseFaculty = this.getBaseFaculty(course.Faculty);
+    
+          // Update faculty stats using base faculty name
+          if (!stats.facultyStats[baseFaculty]) {
+            stats.facultyStats[baseFaculty] = {
+              totalCourses: 0,
+              totalStudents: 0,
+              averageGrade: 0,
+              weightedTotal: 0
+            };
+          }
+          stats.facultyStats[baseFaculty].totalCourses++;
+          stats.facultyStats[baseFaculty].totalStudents += course.Reported;
+          stats.facultyStats[baseFaculty].weightedTotal += course.Average * course.Reported;
         });
-
+    
         // Calculate overall average
         stats.overallAvg = totalWeightedAvg / stats.totalStudents;
-
+    
         // Calculate faculty averages
         Object.keys(stats.facultyStats).forEach(faculty => {
-            stats.facultyStats[faculty].averageGrade = 
-                stats.facultyStats[faculty].weightedTotal / stats.facultyStats[faculty].totalStudents;
+          stats.facultyStats[faculty].averageGrade = 
+            stats.facultyStats[faculty].weightedTotal / stats.facultyStats[faculty].totalStudents;
         });
-
+    
         return stats;
-    }
+      }
 
     createStatCard(title, subtitle, value) {
         return `
@@ -222,6 +225,10 @@ class InsightsManager {
             }
         });
     }
+
+    getBaseFaculty(faculty) {
+        return faculty.replace(" (Honorary Science Credit)", "");
+      }
 
     updateFacultyTable(stats, sortBy) {
         const tableBody = document.getElementById('facultyTableBody');

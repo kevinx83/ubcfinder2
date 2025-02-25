@@ -1,61 +1,61 @@
 export class FilterManager {
   constructor(onFilterChange) {
-      this.onFilterChange = onFilterChange;
-      this.setupFilterListeners();
-      this.setupMoreFiltersToggle();
+    this.onFilterChange = onFilterChange;
+    this.setupFilterListeners();
+    this.setupMoreFiltersToggle();
   }
 
   setupMoreFiltersToggle() {
     const showMoreBtn = document.getElementById('showMoreFilters');
     const collapsibleFilters = document.getElementById('collapsibleFilters');
-    
+
     if (showMoreBtn && collapsibleFilters) {
-        showMoreBtn.addEventListener('click', () => {
-            collapsibleFilters.classList.toggle('expanded');
-            showMoreBtn.textContent = collapsibleFilters.classList.contains('expanded') 
-                ? 'Show Less Filters' 
-                : 'Show More Filters';
-        });
+      showMoreBtn.addEventListener('click', () => {
+        collapsibleFilters.classList.toggle('expanded');
+        showMoreBtn.textContent = collapsibleFilters.classList.contains('expanded')
+          ? 'Show Less Filters'
+          : 'Show More Filters';
+      });
     }
-}
+  }
 
   setupFilterListeners() {
-      const filterContainers = [
-          'facultyFilters',
-          'yearLevelFilters',
-          'averageFilters',
-          'studentFilters',
-          'creditFilters'
-      ];
+    const filterContainers = [
+      'facultyFilters',
+      'yearLevelFilters',
+      'averageFilters',
+      'studentFilters',
+      'creditFilters'
+    ];
 
-      filterContainers.forEach(containerId => {
-          const container = document.getElementById(containerId);
-          if (container) {
-              container.addEventListener('change', (e) => {
-                  const target = e.target;
-                  const container = target.closest('.filter-options');
-                  const selectAllCheckbox = container.querySelector('input[id*="selectAll"]');
-                  const regularCheckboxes = container.querySelectorAll('input[type="checkbox"]:not([id*="selectAll"])');
+    filterContainers.forEach(containerId => {
+      const container = document.getElementById(containerId);
+      if (container) {
+        container.addEventListener('change', (e) => {
+          const target = e.target;
+          const container = target.closest('.filter-options');
+          const selectAllCheckbox = container.querySelector('input[id*="selectAll"]');
+          const regularCheckboxes = container.querySelectorAll('input[type="checkbox"]:not([id*="selectAll"])');
 
-                  if (target.id.includes('selectAll')) {
-                      regularCheckboxes.forEach(checkbox => checkbox.checked = target.checked);
-                  } else {
-                      const checkedCount = Array.from(regularCheckboxes).filter(cb => cb.checked).length;
-                      selectAllCheckbox.checked = checkedCount === regularCheckboxes.length;
-                      if (checkedCount === 0) {
-                          selectAllCheckbox.checked = false;
-                      }
-                  }
-
-                  this.onFilterChange();
-              });
+          if (target.id.includes('selectAll')) {
+            regularCheckboxes.forEach(checkbox => checkbox.checked = target.checked);
+          } else {
+            const checkedCount = Array.from(regularCheckboxes).filter(cb => cb.checked).length;
+            selectAllCheckbox.checked = checkedCount === regularCheckboxes.length;
+            if (checkedCount === 0) {
+              selectAllCheckbox.checked = false;
+            }
           }
-      });
 
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) {
-          searchInput.addEventListener('input', () => this.onFilterChange());
+          this.onFilterChange();
+        });
       }
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => this.onFilterChange());
+    }
   }
 
   getSelectedFilters() {
@@ -136,11 +136,18 @@ export class FilterManager {
   }
 
   initializeFacultyFilter(courses) {
-    const faculties = [...new Set(courses.map(course => course.Faculty))].sort();
+    const faculties = [...new Set(courses.map(course => this.getBaseFaculty(course.Faculty)))].sort();
+    
+    if (!faculties.includes("Faculty of Science")) {
+      faculties.push("Faculty of Science");
+      faculties.sort();
+    }
+    
     const options = faculties.map(faculty => ({
       value: faculty,
       label: faculty
     }));
+    
     this.createFilterOptions('facultyFilters', options, 'selectAllFaculties');
   }
 
@@ -196,9 +203,9 @@ export class FilterManager {
 
     // Initialize faculty filters
     const faculties = [...new Set(professors.flatMap(prof => prof.faculties))].sort();
-    this.createFilterOptions('facultyFilters', 
-        faculties.map(faculty => ({ value: faculty, label: faculty })), 
-        'selectAllFaculties'
+    this.createFilterOptions('facultyFilters',
+      faculties.map(faculty => ({ value: faculty, label: faculty })),
+      'selectAllFaculties'
     );
 
     // Initialize year level filters
@@ -206,12 +213,16 @@ export class FilterManager {
 
     // Initialize average range filters
     this.createFilterOptions('averageFilters', [
-        { value: "90", label: ">90%" },
-        { value: "85", label: "85-89%" },
-        { value: "80", label: "80-84%" },
-        { value: "70", label: "70-79%" },
-        { value: "60", label: "60-69%" },
-        { value: "0", label: "<60%" }
+      { value: "90", label: ">90%" },
+      { value: "85", label: "85-89%" },
+      { value: "80", label: "80-84%" },
+      { value: "70", label: "70-79%" },
+      { value: "60", label: "60-69%" },
+      { value: "0", label: "<60%" }
     ], 'selectAllAverages');
-}
+  }
+
+  getBaseFaculty(faculty) {
+    return faculty.replace(" (Honorary Science Credit)", "");
+  }
 }

@@ -91,9 +91,18 @@ class DataService {
         }
       }
 
-      // Faculty Filter
-      if (faculties.length > 0 && !faculties.includes(course.Faculty)) {
-        return false;
+      // Faculty Filter - Modified to handle honorary science credit
+      if (faculties.length > 0) {
+        const baseFaculty = this.getBaseFaculty(course.Faculty);
+        const hasHonorary = this.hasHonoraryScience(course.Faculty);
+        
+        // Special case: If Science is selected, also show honorary science courses
+        const showAsScience = hasHonorary && faculties.includes("Faculty of Science");
+        
+        // Include if either base faculty is selected OR it has honorary science and Science is selected
+        if (!faculties.includes(baseFaculty) && !showAsScience) {
+          return false;
+        }
       }
 
       // Year Level Filter
@@ -177,6 +186,18 @@ class DataService {
 
   getTotalCount() {
     return this.allCourses.length;
+  }
+
+
+
+  // Helper function to get base faculty name without honorary science suffix
+  getBaseFaculty(faculty) {
+    return faculty.replace(" (Honorary Science Credit)", "");
+  }
+
+  // Helper function to check if a course has honorary science credit
+  hasHonoraryScience(faculty) {
+    return faculty.includes("(Honorary Science Credit)");
   }
 }
 
