@@ -59,12 +59,35 @@ tbody tr:hover {
 
 /* Grade Colors */
 
-.excellent-average { color: #4361ee; font-family: 'JetBrains Mono', monospace; }
-.great-average { color: #009c1f; font-family: 'JetBrains Mono', monospace; }
-.good-average { color: #79ff00; font-family: 'JetBrains Mono', monospace; }
-.fair-average { color: #ffef00; font-family: 'JetBrains Mono', monospace; }
-.bad-average { color: #f0883e; font-family: 'JetBrains Mono', monospace; }
-.horrible-average { color: #f85149; font-family: 'JetBrains Mono', monospace; }
+.excellent-average {
+  color: #4361ee;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.great-average {
+  color: #009c1f;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.good-average {
+  color: #79ff00;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.fair-average {
+  color: #ffef00;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bad-average {
+  color: #f0883e;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.horrible-average {
+  color: #f85149;
+  font-family: 'JetBrains Mono', monospace;
+}
 
 
 .excellent-average,
@@ -155,57 +178,62 @@ td:nth-child(4) {
 
 /* Professor's Table */
 
-#professorTable th:nth-child(1), #professorTable td:nth-child(1) {
+#professorTable th:nth-child(1),
+#professorTable td:nth-child(1) {
   width: 20%;
 }
 
-#professorTable th:nth-child(2), #professorTable td:nth-child(2) {
+#professorTable th:nth-child(2),
+#professorTable td:nth-child(2) {
   width: 35%;
 }
 
-#professorTable th:nth-child(3), #professorTable td:nth-child(3) {
+#professorTable th:nth-child(3),
+#professorTable td:nth-child(3) {
   width: 15%;
 }
 
-#professorTable th:nth-child(4), #professorTable td:nth-child(4) {
+#professorTable th:nth-child(4),
+#professorTable td:nth-child(4) {
   width: 15%;
 }
 
-#professorTable th:nth-child(5), #professorTable td:nth-child(5) {
+#professorTable th:nth-child(5),
+#professorTable td:nth-child(5) {
   width: 15%;
   text-align: center;
 }
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
-  
-  #professorTable th, 
+
+  #professorTable th,
   #professorTable td {
     padding: 8px 6px;
     font-size: 0.8rem;
   }
-  
+
   /* Adjust column widths for mobile */
   #professorTable th:nth-child(1),
   #professorTable td:nth-child(1) {
     width: 20%;
   }
-  
+
   #professorTable th:nth-child(2),
   #professorTable td:nth-child(2) {
     width: 33%;
   }
-  
+
   #professorTable th:nth-child(3),
   #professorTable td:nth-child(3) {
     width: 27%;
   }
-  
+
   #professorTable th:nth-child(4),
   #professorTable td:nth-child(4) {
     width: 10%;
   }
-  
+
   #professorTable th:nth-child(5),
   #professorTable td:nth-child(5) {
     width: 10%;
@@ -219,24 +247,12 @@ td:nth-child(4) {
     text-transform: none;
   }
 
-  /* Optimize course rows in professors table */
-  .course-row {
-    margin-bottom: 5px;
-    font-size: 0.75rem;
-  }
-  
-  /* Better handle faculty names */
-  #professorTable td:nth-child(2) {
-    white-space: normal;
-    word-break: break-word;
-    font-size: 0.75rem;
-  }
-
   table {
     font-size: 0.95rem;
   }
 
-  th, td {
+  th,
+  td {
     padding: 12px 8px;
   }
 
@@ -266,7 +282,7 @@ td:nth-child(4) {
 
   /* Make headers more compact */
   th {
-    padding: 12px 8px;
+    padding: 8px 8px;
     font-size: 0.7rem;
     letter-spacing: 0;
   }
@@ -288,7 +304,20 @@ td:nth-child(4) {
 
   /* Reduce font size for better mobile fit */
   tbody tr td {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
+  }
+
+  /* Further reduce font size */
+  #professorTable td,
+  #professorTable th {
+    font-size: 0.65rem;
+    padding: 8px 8px;
+  }
+
+  /* Adjust course row spacing */
+  .course-row {
+    margin-bottom: 3px;
+    font-size: 0.65rem;
   }
 
   /* Adjust pagination for mobile */
@@ -304,5 +333,6 @@ td:nth-child(4) {
 
   .pagination-info {
     text-align: center;
+    font-size: 0.65rem;
   }
 }
