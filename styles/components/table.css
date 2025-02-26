@@ -324,15 +324,19 @@ td:nth-child(4) {
   .pagination-controls {
     flex-direction: column;
     gap: 15px;
+    padding: 8px;
+    margin-top: 8px;
   }
 
   .pagination-buttons {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 8px;
   }
 
   .pagination-info {
     text-align: center;
     font-size: 0.65rem;
+    margin: 0 8px;
   }
 }
