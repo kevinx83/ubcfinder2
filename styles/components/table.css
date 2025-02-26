@@ -207,12 +207,6 @@ td:nth-child(4) {
 /* Mobile Optimizations */
 @media (max-width: 768px) {
 
-  #professorTable th,
-  #professorTable td {
-    padding: 8px 6px;
-    font-size: 0.8rem;
-  }
-
   /* Adjust column widths for mobile */
   #professorTable th:nth-child(1),
   #professorTable td:nth-child(1) {
@@ -221,17 +215,21 @@ td:nth-child(4) {
 
   #professorTable th:nth-child(2),
   #professorTable td:nth-child(2) {
-    width: 33%;
+    display: none;
+    visibility: collapse;
+    padding: 0;
+    font-size: 0rem;
   }
 
   #professorTable th:nth-child(3),
   #professorTable td:nth-child(3) {
-    width: 27%;
+    width: 100%;
   }
 
   #professorTable th:nth-child(4),
   #professorTable td:nth-child(4) {
     width: 10%;
+    text-align: center;
   }
 
   #professorTable th:nth-child(5),
@@ -260,7 +258,6 @@ td:nth-child(4) {
   th:nth-child(1),
   td:nth-child(1) {
     width: 32%;
-    min-width: 75px;
   }
 
   th:nth-child(2),
@@ -271,13 +268,11 @@ td:nth-child(4) {
   th:nth-child(3),
   td:nth-child(3) {
     width: 15%;
-    min-width: 50px;
   }
 
   th:nth-child(4),
   td:nth-child(4) {
     width: 15%;
-    min-width: 50px;
   }
 
   /* Make headers more compact */
@@ -285,15 +280,6 @@ td:nth-child(4) {
     padding: 8px 8px;
     font-size: 0.65rem;
     letter-spacing: 0;
-  }
-
-  /* Override center alignment for students/average on mobile */
-  th:nth-child(3),
-  td:nth-child(3),
-  th:nth-child(4),
-  td:nth-child(4) {
-    text-align: right;
-    padding-right: 8px;
   }
 
   /* Make course names wrap properly */
