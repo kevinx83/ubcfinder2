@@ -204,6 +204,27 @@
         font-size: 0.95rem;
     }
 
+    .stat-value {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.5rem;
+        margin: 8px 0;
+    }
+
+    .stat-subtitle {
+        color: #8b949e;
+        font-size: 0.75rem;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .stat-card h3 {
+        color: #8b949e;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+    }
+
     .insights-table th,
     .insights-table td {
         padding: 12px 8px;
@@ -234,7 +255,7 @@
     /* Make headers more compact */
     .insights-table th {
         padding: 12px 8px;
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         letter-spacing: 0;
     }
 
@@ -257,7 +278,7 @@
 
     /* Reduce font size for better mobile fit */
     .insights-table td {
-        font-size: 0.8rem;
+        font-size: 0.65rem;
     }
 
     .top-item {

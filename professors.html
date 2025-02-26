@@ -24,8 +24,7 @@
 
 <body>
     <div class="credit">
-        <a href="credits.html" class="credit-link">Credits</a>
-        <a href="data.html" class="credit-link">Course Insights</a>
+        <a href="credits.html" class="credit-link">About</a>
     </div>
     <button class="menu-button">☰ Filters</button>
     <div class="sidebar-overlay"></div>
@@ -47,6 +46,7 @@
                 <span class="toggle-label">UBC-O</span>
             </div>
 
+            <!-- Always visible filters -->
             <div class="filter-group">
                 <div class="filters-row">
                     <div class="filter-section">
@@ -59,7 +59,12 @@
                     </div>
                 </div>
             </div>
-            <div class="filter-group">
+
+            <!-- Show more filters button -->
+            <button type="button" class="show-more-filters" id="showMoreFilters">Show More Filters</button>
+
+            <!-- Collapsible filters -->
+            <div class="filter-group collapsible" id="collapsibleFilters">
                 <div class="filters-row">
                     <div class="filter-section">
                         <h4>Faculties</h4>
@@ -76,11 +81,11 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="Search by professor name">
                 <a href="index.html" class="control-button">Search by Course</a>
                 <select id="sortBy" class="filter-select">
-                    <option value="students">Sort by Students ↓</option>
-                    <option value="students-asc">Sort by Students ↑</option>
                     <option value="name">Sort by Name</option>
                     <option value="average">Sort by Average ↓</option>
                     <option value="average-asc">Sort by Average ↑</option>
+                    <option value="students">Sort by Students ↓</option>
+                    <option value="students-asc">Sort by Students ↑</option>
                 </select>
             </div>
 
