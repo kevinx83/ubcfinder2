@@ -283,7 +283,7 @@ td:nth-child(4) {
   /* Make headers more compact */
   th {
     padding: 8px 8px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 0;
   }
 
