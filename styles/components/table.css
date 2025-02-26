@@ -153,10 +153,83 @@ td:nth-child(4) {
   transform: none;
 }
 
+/* Professor's Table */
+
+#professorTable th:nth-child(1), #professorTable td:nth-child(1) {
+  width: 20%;
+}
+
+#professorTable th:nth-child(2), #professorTable td:nth-child(2) {
+  width: 35%;
+}
+
+#professorTable th:nth-child(3), #professorTable td:nth-child(3) {
+  width: 15%;
+}
+
+#professorTable th:nth-child(4), #professorTable td:nth-child(4) {
+  width: 15%;
+}
+
+#professorTable th:nth-child(5), #professorTable td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
 /* Mobile Optimizations */
 @media (max-width: 768px) {
-  .table-container {
-    border-radius: 8px;
+  
+  #professorTable th, 
+  #professorTable td {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+  
+  /* Adjust column widths for mobile */
+  #professorTable th:nth-child(1),
+  #professorTable td:nth-child(1) {
+    width: 20%;
+  }
+  
+  #professorTable th:nth-child(2),
+  #professorTable td:nth-child(2) {
+    width: 33%;
+  }
+  
+  #professorTable th:nth-child(3),
+  #professorTable td:nth-child(3) {
+    width: 27%;
+  }
+  
+  #professorTable th:nth-child(4),
+  #professorTable td:nth-child(4) {
+    width: 10%;
+  }
+  
+  #professorTable th:nth-child(5),
+  #professorTable td:nth-child(5) {
+    width: 10%;
+  }
+
+  /* Make headers more compact */
+  #professorTable th {
+    padding: 10px 6px;
+    font-size: 0.7rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* Optimize course rows in professors table */
+  .course-row {
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+  }
+  
+  /* Better handle faculty names */
+  #professorTable td:nth-child(2) {
+    white-space: normal;
+    word-break: break-word;
+    font-size: 0.75rem;
   }
 
   table {
@@ -231,16 +304,5 @@ td:nth-child(4) {
 
   .pagination-info {
     text-align: center;
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 380px) {
-  th {
-    font-size: 0.8rem;
-  }
-
-  tbody tr td {
-    font-size: 0.8rem;
   }
 }
