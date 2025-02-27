@@ -272,15 +272,15 @@
   
   .suggestion-icon {
     margin-right: 8px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .suggestion-text {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
   }
   
   .suggestion-desc {
     margin-left: 8px;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
   }
 }
