@@ -35,28 +35,6 @@
     margin-right: 0.4em;
 }
 
-.section-content {
-    max-height: 48px;
-    /* About 2 lines of text */
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-}
-
-.section-content.expanded {
-    max-height: 1000px;
-    /* Large enough to show all content */
-}
-
-
-
-@media (max-width: 1200px) {
-    .section-content {
-        max-height: 24px;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-    }
-}
-
 .show-more-btn {
     width: auto;
     display: block;
